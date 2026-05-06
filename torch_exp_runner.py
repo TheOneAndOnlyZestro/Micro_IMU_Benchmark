@@ -10,8 +10,8 @@ from torch_model import NDenseModelModifiable, NConvModelModifiable, NLSTMModelM
 
 # --- CONFIGURATION ---
 EXPERIMENT_CONFIG = {
-    'architectures': ['lstm'],
-    'n_layers': [1, 2, 3, 4, 5, 6, 7, 8, 9],           # Depth variations
+    'architectures': ['conv'],
+    'n_layers': [8, 9, 10],           # Depth variations
     'sequence_lengths': [5, 10, 15, 20],   # Temporal window sizes
     'batch_norms': [False, True],          # Batch Normalization OFF/ON
     
