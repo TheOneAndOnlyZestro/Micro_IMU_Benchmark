@@ -1,7 +1,3 @@
-Here is a comprehensive and professional `README.md` for your project. It clearly maps out the dual-environment setup, the directory structure, and the step-by-step pipeline required to go from training raw models to viewing them on the interactive dashboard.
-
----
-
 # 🚀 ESP32 Machine Learning HIL Benchmarking Pipeline
 
 An end-to-end Hardware-in-the-Loop (HIL) benchmarking system for evaluating dynamic Machine Learning architectures (Dense, Conv2D, LSTM) on an ESP32 Microcontroller. 
