@@ -10,8 +10,8 @@ from torch_model import NDenseModelModifiable, NConvModelModifiable, NLSTMModelM
 
 # --- CONFIGURATION ---
 EXPERIMENT_CONFIG = {
-    'architectures': ['dense', 'lstm'],
-    'n_layers': [10],           # Depth variations
+    'architectures': ['lstm'],
+    'n_layers': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],           # Depth variations
     'sequence_lengths': [5, 10, 15, 20],   # Temporal window sizes
     'batch_norms': [False, True],          # Batch Normalization OFF/ON
     
@@ -143,7 +143,6 @@ def run_all_experiments():
         for n in EXPERIMENT_CONFIG['n_layers']:
             for seq_length in EXPERIMENT_CONFIG['sequence_lengths']:
                 for bn in EXPERIMENT_CONFIG['batch_norms']:
-                    
                     result = run_experiment(arch, n, seq_length, bn, lr, bs)
                     if result:
                         results.append(result)

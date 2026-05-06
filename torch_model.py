@@ -242,38 +242,60 @@ class NLSTMModelModifiable(nn.Module):
     def __init__(self, n=1, seq_length=10, batch_norm=False):
         super().__init__()
         self.n = n
+        self.seq_length = seq_length
         self.batch_norm = batch_norm
         
-        self.lstms = nn.ModuleList()
+        # FIX: Replace nn.LSTM with a list of nn.LSTMCells
+        self.lstm_cells = nn.ModuleList()
         if batch_norm:
             self.bns = nn.ModuleList()
             
         in_features = 9
-        lstm_units = 16
+        self.lstm_units = 16
         
         for i in range(n):
-            self.lstms.append(nn.LSTM(input_size=in_features, hidden_size=lstm_units, num_layers=1, batch_first=True))
+            self.lstm_cells.append(nn.LSTMCell(input_size=in_features, hidden_size=self.lstm_units))
             if batch_norm:
-                self.bns.append(nn.BatchNorm1d(lstm_units))
-            in_features = lstm_units
+                self.bns.append(nn.BatchNorm1d(self.lstm_units))
+            in_features = self.lstm_units
             
         self.classifier = nn.Sequential(
-            nn.Linear(lstm_units, 7),
+            nn.Linear(self.lstm_units, 7),
             nn.Softmax(dim=1)
         )
 
     def forward(self, x):
-        # x is (B, 9, Seq, 1) -> Squeeze to (B, 9, Seq) -> Transpose to (B, Seq, 9)
+        # x shape: (Batch, 9, Seq, 1) -> Squeeze to (Batch, 9, Seq) -> Transpose to (Batch, Seq, 9)
         x = x.squeeze(-1).transpose(1, 2)
         
+        batch_size = x.size(0)
+        # Use int() to guarantee static unrolling during ONNX export
+        seq_len = int(x.shape[1]) 
+        
         for i in range(self.n):
-            x, _ = self.lstms[i](x)
+            # Initialize Hidden (h) and Cell (c) states to zeros for this specific layer
+            h = torch.zeros(batch_size, self.lstm_units, device=x.device)
+            c = torch.zeros(batch_size, self.lstm_units, device=x.device)
+            
+            layer_outputs = []
+            
+            # UNROLL THE LSTM: Manually loop through the sequence timesteps
+            for t in range(seq_len):
+                # Pass one time-step into the cell, update states
+                h, c = self.lstm_cells[i](x[:, t, :], (h, c))
+                # Store the hidden state for this timestep
+                layer_outputs.append(h)
+                
+            # Stack the outputs back into a sequence: Shape -> (Batch, Seq, Features)
+            # This becomes the input sequence 'x' for the NEXT LSTM layer
+            x = torch.stack(layer_outputs, dim=1)
+            
             if self.batch_norm:
-                # BN1d expects (B, Channels, Seq), so we transpose back and forth
+                # BN1d expects (Batch, Channels, Seq), so we transpose back and forth
                 x = x.transpose(1, 2)
                 x = self.bns[i](x)
                 x = x.transpose(1, 2)
                 
-        # Take the output of the last timestep (equivalent to return_sequences=False)
+        # After all layers finish, grab the very last timestep of the final sequence
         last_out = x[:, -1, :]
         return self.classifier(last_out)
