@@ -10,14 +10,14 @@ from torch_model import NDenseModelModifiable, NConvModelModifiable, NLSTMModelM
 
 # --- CONFIGURATION ---
 EXPERIMENT_CONFIG = {
-    'architectures': ['dense', 'conv', 'lstm'],
+    'architectures': ['lstm'],
     'n_layers': [1, 2, 3, 4, 5, 6, 7, 8, 9],           # Depth variations
     'sequence_lengths': [5, 10, 15, 20],   # Temporal window sizes
     'batch_norms': [False, True],          # Batch Normalization OFF/ON
     
     # Standard Hyperparameters
     'learning_rate': 1e-4,
-    'batch_size': 32,
+    'batch_size': 512,
     'epochs': 10,
 }
 
