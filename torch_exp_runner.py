@@ -13,11 +13,11 @@ EXPERIMENT_CONFIG = {
     'architectures': ['lstm'],
     'n_layers': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],           # Depth variations
     'sequence_lengths': [5, 10, 15, 20],   # Temporal window sizes
-    'batch_norms': [False, True],          # Batch Normalization OFF/ON
+    'batch_norms': [False],          # Batch Normalization OFF/ON
     
     # Standard Hyperparameters
-    'learning_rate': 1e-4,
-    'batch_size': 512,
+    'learning_rate': 5e-4,
+    'batch_size': 1024,
     'epochs': 10,
 }
 
