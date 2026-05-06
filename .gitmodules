@@ -1,0 +1,3 @@
+[submodule "TinyML"]
+	path = TinyML
+	url = git@github.com:derkoellner/TinyML.git
