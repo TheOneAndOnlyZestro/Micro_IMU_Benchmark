@@ -1,0 +1,5 @@
+model_type,learning_rate,batch_size,sequence_length,batch_normalization,final_loss,final_accuracy,epochs_trained,training_time_seconds,model_path
+lstm_0,0.0001,512,5,OFF,6928.84765625,0.6964928507804871,10,3.378387928009033,./model_weights/lstm_0_5_OFF.keras
+lstm_0,0.0001,512,10,OFF,6954.03076171875,0.4988830089569092,10,4.085383176803589,./model_weights/lstm_0_10_OFF.keras
+lstm_0,0.0001,512,15,OFF,6959.3857421875,0.5360501408576965,10,4.840313196182251,./model_weights/lstm_0_15_OFF.keras
+lstm_0,0.0001,512,20,OFF,6967.84130859375,0.3176344931125641,10,5.59047794342041,./model_weights/lstm_0_20_OFF.keras

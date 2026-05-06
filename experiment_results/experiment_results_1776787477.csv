@@ -1,0 +1,4 @@
+model_type,learning_rate,batch_size,final_loss,final_accuracy,epochs_trained,training_time_seconds,model_path
+conv,0.0001,32,2654.16943359375,0.8077756762504578,10,11.736791849136353,./model_weights/conv_lr0.0001_bs32.keras
+conv_lstm,0.0001,32,6642.93505859375,0.8077089786529541,10,12.712616205215454,./model_weights/conv_lstm_lr0.0001_bs32.keras
+residual_conv_lstm,0.0001,32,5215.29541015625,0.8077756762504578,10,16.982988119125366,./model_weights/residual_conv_lstm_lr0.0001_bs32.keras

@@ -1,0 +1,2 @@
+model_type,learning_rate,batch_size,final_loss,epochs_trained,training_time_seconds,model_path
+conv,0.0001,32,2466.3618604460758,10,55.56178903579712,./torch_model_weights/conv_lr0.0001_bs32.pt

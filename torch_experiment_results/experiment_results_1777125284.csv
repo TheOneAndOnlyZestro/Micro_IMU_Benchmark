@@ -1,0 +1,4 @@
+model_type,learning_rate,batch_size,final_loss,epochs_trained,training_time_seconds,model_path
+conv,0.0001,32,2483.473401161145,10,55.61506509780884,./torch_model_weights/conv_lr0.0001_bs32.pt
+conv_lstm,0.0001,32,6478.8705859418105,10,42.22097420692444,./torch_model_weights/conv_lstm_lr0.0001_bs32.pt
+residual_conv_lstm,0.0001,32,3192.443237569032,10,95.90196895599365,./torch_model_weights/residual_conv_lstm_lr0.0001_bs32.pt
