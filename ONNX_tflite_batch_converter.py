@@ -53,7 +53,7 @@ def convert_to_header(tflite_path, header_path):
         print(f"  [Error] xxd failed: {e}")
 
 def run_conversion_pipeline():
-    onnx_files = [f for f in os.listdir(ONNX_DIR) if f.endswith('.onnx')]
+    onnx_files = [f for f in os.listdir(ONNX_DIR) if f.startswith('lstm') and f.endswith('.onnx')]
     onnx_files.sort()
 
     for filename in onnx_files:

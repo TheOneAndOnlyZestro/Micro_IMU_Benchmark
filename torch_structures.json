@@ -1,11 +1,11 @@
 {
     "torch_lstm_4_20_ON": {
         "params": 8503,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-3): 3 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-3): 4 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-3): 3 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-3): 4 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_5_20_ON": {
         "params": 10711,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-4): 4 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-4): 5 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-4): 4 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-4): 5 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_dense_8_20_OFF": {
         "params": 28214,
@@ -25,15 +25,15 @@
     },
     "torch_lstm_10_10_ON": {
         "params": 21751,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-9): 9 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-9): 10 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-9): 9 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-9): 10 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_6_20_OFF": {
         "params": 12727,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-5): 5 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-5): 5 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_2_15_OFF": {
         "params": 4023,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1): LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1): LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_9_15_OFF": {
         "params": 6839,
@@ -65,7 +65,7 @@
     },
     "torch_lstm_1_15_ON": {
         "params": 1879,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n  )\n  (bns): ModuleList(\n    (0): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_dense_9_10_OFF": {
         "params": 32036,
@@ -81,7 +81,7 @@
     },
     "torch_lstm_9_5_ON": {
         "params": 19543,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-8): 8 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-8): 9 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-8): 8 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-8): 9 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_dense_8_20_ON": {
         "params": 29112,
@@ -93,7 +93,7 @@
     },
     "torch_lstm_7_10_OFF": {
         "params": 14903,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-6): 6 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-6): 6 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_4_15_OFF": {
         "params": 2919,
@@ -101,11 +101,11 @@
     },
     "torch_lstm_6_10_ON": {
         "params": 12919,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-5): 5 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-5): 6 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-5): 5 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-5): 6 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_7_10_ON": {
         "params": 15127,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-6): 6 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-6): 7 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-6): 6 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-6): 7 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_dense_7_15_ON": {
         "params": 25118,
@@ -121,7 +121,7 @@
     },
     "torch_lstm_4_15_OFF": {
         "params": 8375,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-3): 3 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-3): 3 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_3_20_ON": {
         "params": 3159,
@@ -133,15 +133,15 @@
     },
     "torch_lstm_2_5_OFF": {
         "params": 4023,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1): LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1): LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_3_5_OFF": {
         "params": 6199,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-2): 2 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-2): 2 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_8_5_ON": {
         "params": 17335,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-7): 7 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-7): 8 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-7): 7 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-7): 8 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_dense_3_5_ON": {
         "params": 8318,
@@ -165,7 +165,7 @@
     },
     "torch_lstm_9_15_OFF": {
         "params": 19255,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-8): 8 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-8): 8 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_2_15_OFF": {
         "params": 1351,
@@ -173,19 +173,19 @@
     },
     "torch_lstm_1_5_ON": {
         "params": 1879,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n  )\n  (bns): ModuleList(\n    (0): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_1_10_OFF": {
         "params": 1847,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_8_5_OFF": {
         "params": 17079,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-7): 7 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-7): 7 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_9_5_OFF": {
         "params": 19255,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-8): 8 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-8): 8 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_6_15_ON": {
         "params": 4679,
@@ -257,11 +257,11 @@
     },
     "torch_lstm_5_5_OFF": {
         "params": 10551,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-4): 4 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-4): 4 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_4_5_OFF": {
         "params": 8375,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-3): 3 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-3): 3 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_dense_3_5_OFF": {
         "params": 7940,
@@ -273,11 +273,11 @@
     },
     "torch_lstm_7_20_OFF": {
         "params": 14903,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-6): 6 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-6): 6 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_3_15_OFF": {
         "params": 6199,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-2): 2 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-2): 2 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_8_15_OFF": {
         "params": 6055,
@@ -293,7 +293,7 @@
     },
     "torch_lstm_3_5_ON": {
         "params": 6295,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-2): 2 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-2): 3 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-2): 2 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-2): 3 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_dense_4_20_OFF": {
         "params": 12263,
@@ -337,19 +337,19 @@
     },
     "torch_lstm_6_10_OFF": {
         "params": 12727,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-5): 5 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-5): 5 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_3_20_ON": {
         "params": 6295,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-2): 2 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-2): 3 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-2): 2 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-2): 3 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_2_20_ON": {
         "params": 4087,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1): LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-1): 2 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1): LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-1): 2 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_5_15_OFF": {
         "params": 10551,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-4): 4 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-4): 4 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_6_10_OFF": {
         "params": 4487,
@@ -369,7 +369,7 @@
     },
     "torch_lstm_2_5_ON": {
         "params": 4087,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1): LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-1): 2 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1): LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-1): 2 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_3_5_OFF": {
         "params": 2135,
@@ -377,7 +377,7 @@
     },
     "torch_lstm_1_20_OFF": {
         "params": 1847,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_4_5_ON": {
         "params": 3047,
@@ -385,7 +385,7 @@
     },
     "torch_lstm_10_15_ON": {
         "params": 21751,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-9): 9 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-9): 10 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-9): 9 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-9): 10 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_dense_5_20_ON": {
         "params": 16878,
@@ -409,11 +409,11 @@
     },
     "torch_lstm_6_15_ON": {
         "params": 12919,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-5): 5 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-5): 6 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-5): 5 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-5): 6 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_7_15_ON": {
         "params": 15127,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-6): 6 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-6): 7 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-6): 6 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-6): 7 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_8_5_OFF": {
         "params": 6055,
@@ -425,15 +425,15 @@
     },
     "torch_lstm_9_20_ON": {
         "params": 19543,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-8): 8 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-8): 9 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-8): 8 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-8): 9 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_8_20_ON": {
         "params": 17335,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-7): 7 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-7): 8 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-7): 7 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-7): 8 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_8_15_OFF": {
         "params": 17079,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-7): 7 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-7): 7 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_3_15_OFF": {
         "params": 2135,
@@ -453,7 +453,7 @@
     },
     "torch_lstm_1_10_ON": {
         "params": 1879,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n  )\n  (bns): ModuleList(\n    (0): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_dense_10_20_ON": {
         "params": 37167,
@@ -465,7 +465,7 @@
     },
     "torch_lstm_10_15_OFF": {
         "params": 21431,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-9): 9 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-9): 9 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_dense_1_15_ON": {
         "params": 2439,
@@ -473,7 +473,7 @@
     },
     "torch_lstm_4_20_OFF": {
         "params": 8375,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-3): 3 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-3): 3 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_5_15_ON": {
         "params": 3863,
@@ -485,7 +485,7 @@
     },
     "torch_lstm_8_10_OFF": {
         "params": 17079,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-7): 7 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-7): 7 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_4_15_ON": {
         "params": 3047,
@@ -501,7 +501,7 @@
     },
     "torch_lstm_10_10_OFF": {
         "params": 21431,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-9): 9 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-9): 9 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_dense_6_10_OFF": {
         "params": 20214,
@@ -525,7 +525,7 @@
     },
     "torch_lstm_9_20_OFF": {
         "params": 19255,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-8): 8 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-8): 8 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_1_20_ON": {
         "params": 599,
@@ -541,7 +541,7 @@
     },
     "torch_lstm_5_10_OFF": {
         "params": 10551,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-4): 4 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-4): 4 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_6_15_OFF": {
         "params": 4487,
@@ -549,7 +549,7 @@
     },
     "torch_lstm_1_5_OFF": {
         "params": 1847,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_dense_7_20_OFF": {
         "params": 24324,
@@ -577,7 +577,7 @@
     },
     "torch_lstm_7_5_ON": {
         "params": 15127,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-6): 6 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-6): 7 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-6): 6 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-6): 7 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_dense_8_15_OFF": {
         "params": 28214,
@@ -585,11 +585,11 @@
     },
     "torch_lstm_2_15_ON": {
         "params": 4087,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1): LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-1): 2 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1): LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-1): 2 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_3_15_ON": {
         "params": 6295,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-2): 2 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-2): 3 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-2): 2 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-2): 3 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_dense_3_10_ON": {
         "params": 8318,
@@ -601,7 +601,7 @@
     },
     "torch_lstm_10_5_ON": {
         "params": 21751,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-9): 9 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-9): 10 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-9): 9 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-9): 10 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_5_10_OFF": {
         "params": 3703,
@@ -609,11 +609,11 @@
     },
     "torch_lstm_6_15_OFF": {
         "params": 12727,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-5): 5 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-5): 5 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_10_20_ON": {
         "params": 21751,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-9): 9 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-9): 10 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-9): 9 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-9): 10 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_9_20_OFF": {
         "params": 14695,
@@ -621,7 +621,7 @@
     },
     "torch_lstm_2_20_OFF": {
         "params": 4023,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1): LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1): LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_dense_4_15_ON": {
         "params": 12743,
@@ -633,15 +633,15 @@
     },
     "torch_lstm_6_5_ON": {
         "params": 12919,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-5): 5 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-5): 6 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-5): 5 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-5): 6 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_5_10_ON": {
         "params": 10711,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-4): 4 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-4): 5 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-4): 4 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-4): 5 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_4_10_ON": {
         "params": 8503,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-3): 3 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-3): 4 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-3): 3 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-3): 4 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_dense_5_15_OFF": {
         "params": 16296,
@@ -649,11 +649,11 @@
     },
     "torch_lstm_7_20_ON": {
         "params": 15127,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-6): 6 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-6): 7 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-6): 6 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-6): 7 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_6_20_ON": {
         "params": 12919,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-5): 5 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-5): 6 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-5): 5 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-5): 6 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_dense_1_20_OFF": {
         "params": 2183,
@@ -669,11 +669,11 @@
     },
     "torch_lstm_8_15_ON": {
         "params": 17335,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-7): 7 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-7): 8 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-7): 7 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-7): 8 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_9_15_ON": {
         "params": 19543,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-8): 8 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-8): 9 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-8): 8 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-8): 9 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_6_5_OFF": {
         "params": 4487,
@@ -693,7 +693,7 @@
     },
     "torch_lstm_3_10_OFF": {
         "params": 6199,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-2): 2 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-2): 2 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_dense_4_5_ON": {
         "params": 12743,
@@ -713,11 +713,11 @@
     },
     "torch_lstm_5_15_ON": {
         "params": 10711,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-4): 4 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-4): 5 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-4): 4 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-4): 5 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_4_15_ON": {
         "params": 8503,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-3): 3 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-3): 4 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-3): 3 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-3): 4 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_dense_4_10_ON": {
         "params": 12743,
@@ -729,7 +729,7 @@
     },
     "torch_lstm_5_20_OFF": {
         "params": 10551,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-4): 4 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-4): 4 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_10_15_OFF": {
         "params": 7623,
@@ -741,7 +741,7 @@
     },
     "torch_lstm_9_10_OFF": {
         "params": 19255,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-8): 8 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-8): 8 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_2_5_ON": {
         "params": 1415,
@@ -749,11 +749,11 @@
     },
     "torch_lstm_1_15_OFF": {
         "params": 1847,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_4_5_ON": {
         "params": 8503,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-3): 3 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-3): 4 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-3): 3 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-3): 4 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_dense_10_5_ON": {
         "params": 37167,
@@ -773,11 +773,11 @@
     },
     "torch_lstm_2_10_ON": {
         "params": 4087,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1): LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-1): 2 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1): LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-1): 2 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_3_10_ON": {
         "params": 6295,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-2): 2 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-2): 3 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-2): 2 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-2): 3 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_dense_10_10_ON": {
         "params": 37167,
@@ -785,7 +785,7 @@
     },
     "torch_lstm_1_20_ON": {
         "params": 1879,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n  )\n  (bns): ModuleList(\n    (0): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_3_20_OFF": {
         "params": 3031,
@@ -793,7 +793,7 @@
     },
     "torch_lstm_8_20_OFF": {
         "params": 17079,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-7): 7 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-7): 7 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_10_5_OFF": {
         "params": 7623,
@@ -805,7 +805,7 @@
     },
     "torch_lstm_4_10_OFF": {
         "params": 8375,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-3): 3 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-3): 3 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_1_5_OFF": {
         "params": 567,
@@ -813,11 +813,11 @@
     },
     "torch_lstm_8_10_ON": {
         "params": 17335,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-7): 7 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-7): 8 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-7): 7 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-7): 8 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_9_10_ON": {
         "params": 19543,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-8): 8 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-8): 9 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-8): 8 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-8): 9 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_dense_9_15_ON": {
         "params": 33038,
@@ -845,7 +845,7 @@
     },
     "torch_lstm_10_20_OFF": {
         "params": 21431,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-9): 9 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-9): 9 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_dense_6_5_ON": {
         "params": 20900,
@@ -873,11 +873,11 @@
     },
     "torch_lstm_7_15_OFF": {
         "params": 14903,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-6): 6 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-6): 6 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_10_5_OFF": {
         "params": 21431,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-9): 9 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-9): 9 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_4_10_OFF": {
         "params": 2919,
@@ -901,7 +901,7 @@
     },
     "torch_lstm_3_20_OFF": {
         "params": 6199,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-2): 2 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-2): 2 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_7_20_ON": {
         "params": 11127,
@@ -921,11 +921,11 @@
     },
     "torch_lstm_6_5_OFF": {
         "params": 12727,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-5): 5 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-5): 5 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_lstm_7_5_OFF": {
         "params": 14903,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-6): 6 x LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-6): 6 x LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_8_15_ON": {
         "params": 6311,
@@ -941,7 +941,7 @@
     },
     "torch_lstm_5_5_ON": {
         "params": 10711,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1-4): 4 x LSTM(16, 16, batch_first=True)\n  )\n  (bns): ModuleList(\n    (0-4): 5 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1-4): 4 x LSTMCell(16, 16)\n  )\n  (bns): ModuleList(\n    (0-4): 5 x BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_9_10_OFF": {
         "params": 6839,
@@ -949,7 +949,7 @@
     },
     "torch_lstm_2_10_OFF": {
         "params": 4023,
-        "summary": "NLSTMModelModifiable(\n  (lstms): ModuleList(\n    (0): LSTM(9, 16, batch_first=True)\n    (1): LSTM(16, 16, batch_first=True)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
+        "summary": "NLSTMModelModifiable(\n  (lstm_cells): ModuleList(\n    (0): LSTMCell(9, 16)\n    (1): LSTMCell(16, 16)\n  )\n  (classifier): Sequential(\n    (0): Linear(in_features=16, out_features=7, bias=True)\n    (1): Softmax(dim=1)\n  )\n)"
     },
     "torch_conv_1_15_OFF": {
         "params": 567,

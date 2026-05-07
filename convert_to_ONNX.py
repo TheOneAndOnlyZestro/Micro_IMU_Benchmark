@@ -8,7 +8,7 @@ ONNX_DIR = 'onnx_models'
 os.makedirs(ONNX_DIR, exist_ok=True)
 
 def export_all_to_onnx():
-    pt_files = [f for f in os.listdir(MODEL_DIR) if f.endswith('.pt')]
+    pt_files = [f for f in os.listdir(MODEL_DIR) if f.startswith('lstm') and f.endswith('.pt')]
 
     for filename in pt_files:
         model_path = os.path.join(MODEL_DIR, filename)

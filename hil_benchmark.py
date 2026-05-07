@@ -324,7 +324,7 @@ def main():
     features = df.iloc[:, :FEATURE_COUNT].values
     labels = df.iloc[:, FEATURE_COUNT:FEATURE_COUNT+OUTPUT_COUNT].values
     
-    tflite_files = [f for f in os.listdir(MODELS_DIR) if f.endswith('.tflite')]
+    tflite_files = [f for f in os.listdir(MODELS_DIR) if f.startswith('torch_lstm') and f.endswith('.tflite')]
     
     # ========================================================
     # NEW: SHUFFLE THE MODELS TO PREVENT CASCADING ERROR BIAS
