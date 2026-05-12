@@ -63,9 +63,6 @@ if __name__ == '__main__':
     print("="*50)
     print("Starting Keras (TF) Layer +1 Synchronization")
     print("="*50)
-    
-    sync_csv_files()
-    print("-" * 50)
     sync_json_file(KERAS_JSON)
     sync_json_file(TFLITE_JSON)
     

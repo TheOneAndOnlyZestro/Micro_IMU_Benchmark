@@ -155,10 +155,6 @@ class ConvResidualLSTMModelUnrolled(nn.Module):
         out = self.final_layer(h)
         return out
     
-import torch
-import torch.nn as nn
-import math
-
 class NDenseModelModifiable(nn.Module):
     def __init__(self, n=1, seq_length=10, batch_norm=False):
         super().__init__()
