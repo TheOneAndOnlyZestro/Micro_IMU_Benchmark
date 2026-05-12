@@ -6,11 +6,13 @@ import time
 from dataset import load_dataset_conv
 from model import create_conv_lstm_model_generator, create_dense_model_generator, create_conv_model_generator, create_lstm_model_generator
 
+gpus = tf.config.list_physical_devices('GPU')
+if gpus:
+    for gpu in gpus:
+        tf.config.experimental.set_memory_growth(gpu, True)
 
 BENCHMARK_SWEEP = {
     # Family 1: Dense-only depth sweep
-    "sequence_lengths" : [10,20],
-    "batch_norm_options" : [False, True],
     "dense_only": {
         "generator": create_dense_model_generator,
         "param_grid": [
@@ -55,6 +57,8 @@ BENCHMARK_SWEEP = {
 
 # --- CONFIGURATION ---
 EXPERIMENT_CONFIG = {
+    "sequence_lengths" : [10,20],
+    "batch_norm_options" : [False, True],
     'learning_rate': 1e-4,
     'batch_size': 512,
     'epochs': 10,
@@ -74,7 +78,7 @@ os.makedirs(MODELS_DIR, exist_ok=True)
 
 def run_experiment(model, dataset):
     """Run a single experiment configuration."""
-
+    optimizer = keras.optimizers.Adam(learning_rate=EXPERIMENT_CONFIG.get('learning_rate'))
     # Compile with specific learning rate
     model.compile(optimizer=optimizer, loss='mean_squared_error', metrics=['accuracy'])
     train_dataset, test_dataset = dataset
@@ -87,7 +91,7 @@ def run_experiment(model, dataset):
         verbose=1
     )
 
-    loss, accuracy, history = model.evaluate(test_dataset, verbose=0)
+    loss, accuracy = model.evaluate(test_dataset, verbose=0)
 
     return (loss, accuracy, history)  
 
@@ -102,8 +106,8 @@ def run_dense_only(model_info, generator_func):
                                              end_units=end_units,
                                              batch_size=None)
     
-    for sq in BENCHMARK_SWEEP.get('sequence_lengths'):
-        for bn in BENCHMARK_SWEEP.get('batch_norm_options'):
+    for sq in EXPERIMENT_CONFIG.get('sequence_lengths'):
+        for bn in EXPERIMENT_CONFIG.get('batch_norm_options'):
             yield (sq, bn, model_id, current_model_generator(sequence_length=sq, batch_normalization= bn))
 
 def run_conv_only(model_info, generator_func):
@@ -117,8 +121,8 @@ def run_conv_only(model_info, generator_func):
                                              max_filters=max_filters,
                                              batch_size=None)
     
-    for sq in BENCHMARK_SWEEP.get('sequence_lengths'):
-        for bn in BENCHMARK_SWEEP.get('batch_norm_options'):
+    for sq in EXPERIMENT_CONFIG.get('sequence_lengths'):
+        for bn in EXPERIMENT_CONFIG.get('batch_norm_options'):
             yield (sq, bn, model_id, current_model_generator(sequence_length=sq, batch_normalization= bn))
 
 def run_lstm_only(model_info, generator_func):
@@ -131,8 +135,8 @@ def run_lstm_only(model_info, generator_func):
                                              dense_head_units=dense_head_units,
                                              batch_size=None)
     
-    for sq in BENCHMARK_SWEEP.get('sequence_lengths'):
-        for bn in BENCHMARK_SWEEP.get('batch_norm_options'):
+    for sq in EXPERIMENT_CONFIG.get('sequence_lengths'):
+        for bn in EXPERIMENT_CONFIG.get('batch_norm_options'):
             yield (sq, bn, model_id, current_model_generator(sequence_length=sq, batch_normalization= bn))
 
 def run_conv_lstm(model_info, generator_func):
@@ -148,8 +152,8 @@ def run_conv_lstm(model_info, generator_func):
                                              dense_head_units=dense_head_units,
                                              batch_size=None)
     
-    for sq in BENCHMARK_SWEEP.get('sequence_lengths'):
-        for bn in BENCHMARK_SWEEP.get('batch_norm_options'):
+    for sq in EXPERIMENT_CONFIG.get('sequence_lengths'):
+        for bn in EXPERIMENT_CONFIG.get('batch_norm_options'):
             yield (sq, bn, model_id, current_model_generator(sequence_length=sq, batch_normalization= bn))
 
 model_handle = {
@@ -175,13 +179,14 @@ def run_all_experiments(datasets):
             for sq, bn, model_id, current_model in models:
                 start_time = time.time()
                 loss, accuracy, history = run_experiment(current_model, dataset=datasets.get(str(sq)))
-                elapsed_time = time.time() - start_time()
+                elapsed_time = time.time() - start_time
 
                 # Save best model
                 model_path = os.path.join(MODELS_DIR, f"{model_id}.keras")
                 current_model.save(model_path)
                 
-                with open(f"{os.path.join(MODELS_DIR, f"{model_id}.txt")}", "w") as f:
+                info_path = os.path.join(MODELS_DIR, f"{model_id}.txt")
+                with open(info_path, "w") as f:
                     current_model.summary(print_fn=lambda x: f.write(x + "\n"))
 
                 result = {
@@ -224,7 +229,7 @@ if __name__ == "__main__":
     print("=" * 60)
     #tf.config.set_visible_devices([], 'GPU')
     # Run all experiments
-    optimizer = keras.optimizers.Adam(learning_rate=EXPERIMENT_CONFIG.get('learning_rate'))
+    
 
     # Prefetch datasets with all sq_lengths needed
     train_dataset_seq_10 = load_dataset_conv(
