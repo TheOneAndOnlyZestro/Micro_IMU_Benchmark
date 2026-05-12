@@ -33,7 +33,7 @@ BENCHMARK_SWEEP = {
         "param_grid": [
             {"n_layers": nl, "lstm_units": u, "dense_head_units": [18, 6]}
             for nl in [1, 2, 3]
-            for u in [16, 32, 60]
+            for u in [32, 60]
         ],
     },
     # Family 4: Conv + LSTM hybrid (closest to target)
@@ -48,7 +48,7 @@ BENCHMARK_SWEEP = {
             }
             for nc in [2]
             for nl in [1, 2, 3]
-            for u in [16, 32, 60]
+            for u in [32, 60]
         ],
     },
 }

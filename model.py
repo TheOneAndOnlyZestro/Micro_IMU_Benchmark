@@ -241,11 +241,6 @@ def create_conv_lstm_model_generator(
             if i < n_conv_layers - 1:
                 current_filters = min(conv_max_filters, current_filters * 2)
 
-        # === OPTIONAL DOWNSAMPLE ===
-        # Mirrors your Downsample_Block (Conv1d stride=2 along the sequence axis)
-        if use_downsample:
-            model.add(keras.layers.MaxPooling2D(pool_size=(2, 1)))
-
         # === RESHAPE FOR LSTM ===
         # Drop the width-1 dim. After this, sequence_length may be halved if
         # downsample was used; tf will infer the new shape.
@@ -435,9 +430,3 @@ if __name__ == "__main__":
         dense_head_units=[18, 6]
     )(sequence_length=20, batch_normalization=True)
     m4.summary()
-
-    print("\n" + "=" * 60)
-    print("TARGET replica (production config, seq=80)")
-    print("=" * 60)
-    m5 = create_target_replica_generator(lstm_units=56, n_lstm_layers=2)(sequence_length=80)
-    m5.summary()
