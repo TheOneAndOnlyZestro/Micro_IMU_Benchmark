@@ -181,6 +181,9 @@ def run_all_experiments(datasets):
                 model_path = os.path.join(MODELS_DIR, f"{model_id}.keras")
                 current_model.save(model_path)
                 
+                with open(f"{os.path.join(MODELS_DIR, f"{model_id}.txt")}", "w") as f:
+                    current_model.summary(print_fn=lambda x: f.write(x + "\n"))
+
                 result = {
                     'model_type': model_family,
                     'sequence_length' : sq,
