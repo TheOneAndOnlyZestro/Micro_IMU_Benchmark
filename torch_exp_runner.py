@@ -2,27 +2,63 @@ import os
 import torch
 import time
 import pandas as pd
+from torchinfo import summary
 from torch.utils.data import DataLoader
 
 # Import the new Modifiable architectures
 from torch_dataset import IMUDataset
-from torch_model import NDenseModelModifiable, NConvModelModifiable, NLSTMModelModifiable
+from torch_model import NDenseModel, NConvModel, NLSTMModel, NConvLSTMModel
+
+BENCHMARK_SWEEP = {
+    # "dense_only": {
+    #     "class": NDenseModel,
+    #     "param_grid": [
+    #         {"n_layers": n, "start_units": 128, "end_units": 16}
+    #         for n in [1, 2, 3, 4, 5, 6, 8]
+    #     ],
+    # },
+    # "conv_only": {
+    #     "class": NConvModel,
+    #     "param_grid": [
+    #         {"n_layers": n, "base_filters": 16, "max_filters": 64}
+    #         for n in [1, 2, 3, 4, 5, 6, 8]
+    #     ],
+    # },
+    # "lstm_only": {
+    #     "class": NLSTMModel,
+    #     "param_grid": [
+    #         {"n_layers": nl, "lstm_units": u, "dense_head_units": [18, 6]}
+    #         for nl in [1, 2, 3]
+    #         for u in [32,60]
+    #     ],
+    # },
+    "conv_lstm": {
+        "class": NConvLSTMModel,
+        "param_grid": [
+            {
+                "n_conv_layers": nc,
+                "n_lstm_layers": nl,
+                "lstm_units": u,
+                "dense_head_units": [18, 6],
+            }
+            for nc in [2]
+            for nl in [1, 2, 3]
+            for u in [32, 60]
+        ],
+    },
+}
 
 # --- CONFIGURATION ---
-EXPERIMENT_CONFIG = {
-    'architectures': ['lstm'],
-    'n_layers': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],           # Depth variations
-    'sequence_lengths': [5, 10, 15, 20],   # Temporal window sizes
-    'batch_norms': [False],          # Batch Normalization OFF/ON
-    
-    # Standard Hyperparameters
-    'learning_rate': 5e-4,
-    'batch_size': 1024,
+EXPERIMENT_CONFIG = { 
+    "sequence_lengths": [10, 20],
+    "batch_norm_options": [False, True],
+    'learning_rate': 1e-4,
+    'batch_size': 64,
     'epochs': 10,
 }
 
 # File paths
-IMU_TRAIN_FILES = ["./dataset/IMU_Data_1.csv", "./dataset/IMU_Data_2.csv"]
+IMU_TRAIN_FILES = ["./dataset/IMU_Data_1.csv", "./dataset/IMU_Data_2.csv", "./dataset/IMU_Data_3.csv"]
 IMU_TEST_FILES = ["./dataset/IMU_Data_5.csv"]
 
 # Output directories
@@ -36,117 +72,153 @@ os.makedirs(MODELS_DIR, exist_ok=True)
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {DEVICE}")
 
-def get_model(arch, n, seq_length, bn):
-    """Factory function to dynamically create N-layer models."""
-    if arch == 'dense':
-        return NDenseModelModifiable(n=n, seq_length=seq_length, batch_norm=bn)
-    elif arch == 'conv':
-        return NConvModelModifiable(n=n, seq_length=seq_length, batch_norm=bn)
-    elif arch == 'lstm':
-        return NLSTMModelModifiable(n=n, seq_length=seq_length, batch_norm=bn)
-    else:
-        raise ValueError(f"Unknown architecture: {arch}")
-    
-def run_experiment(arch, n, seq_length, bn, lr, batch_size):
-    """Run a single experiment configuration."""
-    
-    # -------------------------------------------------------------
-    # CRITICAL: Enforce Naming Convention for Dashboard Parsing!
-    # Format: {arch}_{layers}_{seq}_{bn}.pt
-    # -------------------------------------------------------------
-    bn_str = "ON" if bn else "OFF"
-    model_name = f"{arch}_{n}_{seq_length}_{bn_str}"
-    model_path = os.path.join(MODELS_DIR, f"{model_name}.pt")
-    
-    print(f"\n🚀 Training Model: {model_name}")
-    start_time = time.time()
-    
-    try:
-        # Create and map model to device
-        model = get_model(arch, n, seq_length, bn)
-        model = model.to(DEVICE)
-        
-        optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+def run_dense_only(model_info, model_module):
+    n_layers = model_info.get('n_layers')
+    start_units = model_info.get('start_units')
+    end_units = model_info.get('end_units')
 
-        # Note: We pass the dynamic seq_length to the dataset!
-        imu_dataset = IMUDataset(IMU_TRAIN_FILES, sequence_length=seq_length)
-        imu_data = DataLoader(dataset=imu_dataset, batch_size=batch_size, shuffle=True)
+    model_id = f"{'dense_only'}_{n_layers}_{start_units}_{end_units}"
+    for sq in EXPERIMENT_CONFIG.get('sequence_lengths'):
+        for bn in EXPERIMENT_CONFIG.get('batch_norm_options'):
+            yield (sq, bn, f"{model_id}_{sq}_{bn}", model_module(n_layers=n_layers,
+                                        seq_length=sq, start_units=start_units, end_units=end_units,
+                                        batch_norm=bn))
+
+def run_conv_only(model_info, model_module):
+    n_layers = model_info.get('n_layers')
+    base_filters = model_info.get('base_filters')
+    max_filters = model_info.get('max_filters')
+
+    model_id = f"{'conv_only'}_{n_layers}_{base_filters}_{max_filters}"
+    for sq in EXPERIMENT_CONFIG.get('sequence_lengths'):
+        for bn in EXPERIMENT_CONFIG.get('batch_norm_options'):
+            yield (sq, bn, f"{model_id}_{sq}_{bn}", model_module(n_layers=n_layers,
+                                        seq_length=sq, base_filters=base_filters, max_filters=max_filters,
+                                        batch_norm=bn))
+
+def run_lstm_only(model_info, model_module):
+    n_layers = model_info.get('n_layers')
+    lstm_units = model_info.get('lstm_units')
+    dense_head_units = model_info.get('dense_head_units')
+    model_id = f"{'lstm_only'}_{n_layers}_{lstm_units}_{'_'.join(str(x) for x in dense_head_units)}"
+    
+    for sq in EXPERIMENT_CONFIG.get('sequence_lengths'):
+        for bn in EXPERIMENT_CONFIG.get('batch_norm_options'):
+            yield (sq, bn, f"{model_id}_{sq}_{bn}", model_module(n_layers=n_layers,
+                                        seq_length=sq, lstm_units=lstm_units, 
+                                        dense_head_units=dense_head_units,
+                                        batch_norm=bn))
+
+def run_conv_lstm(model_info, model_module):
+    n_conv_layers = model_info.get('n_conv_layers')
+    n_lstm_layers = model_info.get('n_lstm_layers')
+    lstm_units = model_info.get('lstm_units')
+    dense_head_units = model_info.get('dense_head_units')
+
+    model_id = f"{'conv_lstm'}_{n_conv_layers}_{n_lstm_layers}_{lstm_units}_{'_'.join(str(x) for x in dense_head_units)}"
+    
+    for sq in EXPERIMENT_CONFIG.get('sequence_lengths'):
+        for bn in EXPERIMENT_CONFIG.get('batch_norm_options'):
+            yield (sq, bn, f"{model_id}_{sq}_{bn}", model_module(seq_length=sq, n_conv_layers= n_conv_layers,
+                                                    n_lstm_layers=n_lstm_layers, lstm_units=lstm_units,
+                                                    dense_head_units=dense_head_units))
+
+model_handle = {
+    'dense_only': run_dense_only,
+    'conv_only': run_conv_only,
+    'lstm_only' : run_lstm_only,
+    'conv_lstm' : run_conv_lstm
+}
+
+def run_experiment(model, dataloader):
+    """Run a single experiment configuration."""  
+
+    # Create and map model to device
+    model = model.to(DEVICE)
+    optimizer = torch.optim.Adam(model.parameters(), lr=EXPERIMENT_CONFIG.get('learning_rate'))
+    loss_fn = torch.nn.MSELoss()
+    
+    train_dataloader, test_dataloader = dataloader
+    # Train model
+    for epoch in range(EXPERIMENT_CONFIG.get('epochs')):
+        model.train()
+        running_loss = 0.0 
         
-        loss_fn = torch.nn.MSELoss()
-        
-        # Train model
-        for epoch in range(EXPERIMENT_CONFIG.get('epochs')):
-            model.train()
-            running_loss = 0.0 
+        for batch, (x, y) in enumerate(train_dataloader):
+            x, y = x.to(DEVICE), y.to(DEVICE)
             
-            for batch, (x, y) in enumerate(imu_data):
-                x, y = x.to(DEVICE), y.to(DEVICE)
-                
-                optimizer.zero_grad()
-                pred = model(x)
-                loss = loss_fn(pred, y)
+            optimizer.zero_grad()
+            pred = model(x)
+            loss = loss_fn(pred, y)
 
-                loss.backward()
-                optimizer.step()
-                
-                running_loss += loss.item() 
-                
-            avg_train_loss = running_loss / len(imu_data)
-            print(f"  [EPOCH {epoch+1}/{EXPERIMENT_CONFIG.get('epochs')}] Avg Train Loss: {avg_train_loss:.4f}")
-    
-        # Evaluate on test set
-        model.eval()
-        imu_dataset_test = IMUDataset(IMU_TEST_FILES, sequence_length=seq_length)
-        imu_data_test = DataLoader(dataset=imu_dataset_test, batch_size=batch_size, shuffle=False)
+            loss.backward()
+            optimizer.step()
+            
+            running_loss += loss.item() 
+            
+        avg_train_loss = running_loss / len(train_dataloader)
+        print(f"  [EPOCH {epoch+1}/{EXPERIMENT_CONFIG.get('epochs')}] Avg Train Loss: {avg_train_loss:.4f}")
 
-        test_loss = 0.0
+    # Evaluate on test set
+    model.eval()
+    test_loss = 0.0
 
-        with torch.no_grad():
-            for x, y in imu_data_test:
-                x, y = x.to(DEVICE), y.to(DEVICE)
-                pred = model(x)
-                test_loss += loss_fn(pred, y).item()
+    with torch.no_grad():
+        for x, y in test_dataloader:
+            x, y = x.to(DEVICE), y.to(DEVICE)
+            pred = model(x)
+            test_loss += loss_fn(pred, y).item()
 
-        test_loss /= len(imu_data_test)
-        print(f"  🎯 Final test Avg Loss: {test_loss:.4f}")
+    test_loss /= len(test_dataloader)
+    print(f"  🎯 Final test Avg Loss: {test_loss:.4f}")
 
-        # Save the model dict
-        torch.save(model.state_dict(), model_path)
-        
-        elapsed_time = time.time() - start_time
-        
-        result = {
-            'Model_Name': model_name,
-            'Arch': arch,
-            'Layers': n,
-            'Seq_Length': seq_length,
-            'BatchNorm': bn_str,
-            'final_loss': test_loss,
-            'training_time_seconds': elapsed_time
-        }
-        
-        print(f"  ✅ Saved to: {model_path}")
-        return result
-        
-    except Exception as e:
-        print(f"  ❌ Failed: {model_name} - Error: {str(e)}")
-        return None
+    return (test_loss, None, None)
 
-def run_all_experiments():
+def run_all_experiments(dataloaders):
     """Iterate over all dynamic combinations."""
     results = []
     
-    lr = EXPERIMENT_CONFIG['learning_rate']
-    bs = EXPERIMENT_CONFIG['batch_size']
     
-    for arch in EXPERIMENT_CONFIG['architectures']:
-        for n in EXPERIMENT_CONFIG['n_layers']:
-            for seq_length in EXPERIMENT_CONFIG['sequence_lengths']:
-                for bn in EXPERIMENT_CONFIG['batch_norms']:
-                    result = run_experiment(arch, n, seq_length, bn, lr, bs)
-                    if result:
-                        results.append(result)
-                        
+    for model_family, family_params in BENCHMARK_SWEEP.items():
+        print(f"\n{'='*60}")
+        print(f"Running experiments Family: {model_family}, ON Device {DEVICE}")
+        print('=' * 60)
+        model_module = family_params.get('class')
+        model_permutations = family_params.get('param_grid')
+        for model_info in model_permutations:
+            models = model_handle.get(model_family)(model_info=model_info, model_module=model_module)  
+
+            for sq, bn, model_id, current_model in models:
+                start_time = time.time()
+                loss, accuracy, history = run_experiment(current_model, dataloader=dataloaders.get(str(sq)))
+                elapsed_time = time.time() - start_time
+
+                # Save best model
+                model_path = os.path.join(MODELS_DIR, f"torch_{model_id}.pt")
+                torch.save(current_model.state_dict(), model_path)
+                
+                info_path = os.path.join(MODELS_DIR, f"torch_{model_id}.txt")
+                with open(info_path, "w") as f:
+                    sample = 0
+                    for x,y in dataloaders[str(EXPERIMENT_CONFIG.get('sequence_lengths')[0])][0]:
+                        sample = x
+                        break
+                    f.write(str(summary(current_model, input_size=sample.shape, verbose=0)))
+
+                result = {
+                    'model_type': model_family,
+                    'sequence_length' : sq,
+                    'batch_normalization' : 'ON' if bn else 'OFF',
+                    'final_loss': loss,
+                    'training_time_seconds': elapsed_time,
+                    'model_path': model_path
+                }
+                
+                results.append(result)
+
+                print(f"✓ Completed: {model_id}")
+                print(result)
+
     return results
 
 def save_results_to_csv(results):
@@ -171,7 +243,17 @@ if __name__ == "__main__":
     print("Starting Automated PyTorch N-Modifiable Experiment Runner")
     print("=" * 60)
     
-    results = run_all_experiments()
+    dataloaders = {}
+    for sq in EXPERIMENT_CONFIG.get('sequence_lengths'):
+        train_dataset = IMUDataset(IMU_TRAIN_FILES, sequence_length=sq)
+        train_data = DataLoader(dataset=train_dataset, batch_size=EXPERIMENT_CONFIG.get('batch_size'), shuffle=True)
+
+        test_dataset = IMUDataset(IMU_TEST_FILES, sequence_length=sq)
+        test_data = DataLoader(dataset=test_dataset, batch_size=EXPERIMENT_CONFIG.get('batch_size'), shuffle=False)
+        
+        dataloaders[str(sq)] = (train_data, test_data)
+    
+    results = run_all_experiments(dataloaders=dataloaders)
     
     if results:
         save_results_to_csv(results)

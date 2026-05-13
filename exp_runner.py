@@ -60,7 +60,7 @@ EXPERIMENT_CONFIG = {
     "sequence_lengths" : [10,20],
     "batch_norm_options" : [False, True],
     'learning_rate': 1e-4,
-    'batch_size': 512,
+    'batch_size': 64,
     'epochs': 10,
 }
 
@@ -108,7 +108,7 @@ def run_dense_only(model_info, generator_func):
     
     for sq in EXPERIMENT_CONFIG.get('sequence_lengths'):
         for bn in EXPERIMENT_CONFIG.get('batch_norm_options'):
-            yield (sq, bn, model_id, current_model_generator(sequence_length=sq, batch_normalization= bn))
+            yield (sq, bn, f"{model_id}_{sq}_{bn}", current_model_generator(sequence_length=sq, batch_normalization= bn))
 
 def run_conv_only(model_info, generator_func):
     n_layers = model_info.get('n_layers')
@@ -123,13 +123,13 @@ def run_conv_only(model_info, generator_func):
     
     for sq in EXPERIMENT_CONFIG.get('sequence_lengths'):
         for bn in EXPERIMENT_CONFIG.get('batch_norm_options'):
-            yield (sq, bn, model_id, current_model_generator(sequence_length=sq, batch_normalization= bn))
+            yield (sq, bn, f"{model_id}_{sq}_{bn}", current_model_generator(sequence_length=sq, batch_normalization= bn))
 
 def run_lstm_only(model_info, generator_func):
     n_layers = model_info.get('n_layers')
     lstm_units = model_info.get('lstm_units')
     dense_head_units = model_info.get('dense_head_units')
-    model_id = f"{'lstm_only'}_{n_layers}_{lstm_units}_{'_'.join(dense_head_units)}"
+    model_id = f"{'lstm_only'}_{n_layers}_{lstm_units}_{'_'.join(str(x) for x in dense_head_units)}"
     current_model_generator = generator_func(n_layers=n_layers,
                                              lstm_units=lstm_units,
                                              dense_head_units=dense_head_units,
@@ -137,7 +137,7 @@ def run_lstm_only(model_info, generator_func):
     
     for sq in EXPERIMENT_CONFIG.get('sequence_lengths'):
         for bn in EXPERIMENT_CONFIG.get('batch_norm_options'):
-            yield (sq, bn, model_id, current_model_generator(sequence_length=sq, batch_normalization= bn))
+            yield (sq, bn, f"{model_id}_{sq}_{bn}", current_model_generator(sequence_length=sq, batch_normalization= bn))
 
 def run_conv_lstm(model_info, generator_func):
     n_conv_layers = model_info.get('n_conv_layers')
@@ -145,7 +145,7 @@ def run_conv_lstm(model_info, generator_func):
     lstm_units = model_info.get('lstm_units')
     dense_head_units = model_info.get('dense_head_units')
 
-    model_id = f"{'conv_lstm'}_{n_conv_layers}_{n_lstm_layers}_{lstm_units}_{'_'.join(dense_head_units)}"
+    model_id = f"{'conv_lstm'}_{n_conv_layers}_{n_lstm_layers}_{lstm_units}_{'_'.join(str(x) for x in dense_head_units)}"
     current_model_generator = generator_func(n_conv_layers=n_conv_layers,
                                              n_lstm_layers=n_lstm_layers,
                                              lstm_units=lstm_units,
@@ -154,7 +154,7 @@ def run_conv_lstm(model_info, generator_func):
     
     for sq in EXPERIMENT_CONFIG.get('sequence_lengths'):
         for bn in EXPERIMENT_CONFIG.get('batch_norm_options'):
-            yield (sq, bn, model_id, current_model_generator(sequence_length=sq, batch_normalization= bn))
+            yield (sq, bn, f"{model_id}_{sq}_{bn}", current_model_generator(sequence_length=sq, batch_normalization= bn))
 
 model_handle = {
     'dense_only': run_dense_only,
@@ -204,6 +204,8 @@ def run_all_experiments(datasets):
 
                 print(f"✓ Completed: {model_id}")
                 print(result)
+
+    return results
 
 
 def save_results_to_csv(results):
