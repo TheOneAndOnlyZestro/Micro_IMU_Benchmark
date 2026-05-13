@@ -59,9 +59,9 @@ BENCHMARK_SWEEP = {
 EXPERIMENT_CONFIG = {
     "sequence_lengths" : [10,20],
     "batch_norm_options" : [False, True],
-    'learning_rate': 1e-4,
+    'learning_rate': 1e-3,
     'batch_size': 64,
-    'epochs': 10,
+    'epochs': 20,
 }
 
 
