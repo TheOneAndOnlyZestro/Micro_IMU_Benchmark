@@ -231,37 +231,24 @@ if __name__ == "__main__":
     print("=" * 60)
     #tf.config.set_visible_devices([], 'GPU')
     # Run all experiments
-    
-
     # Prefetch datasets with all sq_lengths needed
-    train_dataset_seq_10 = load_dataset_conv(
-            imu_file=IMU_TRAIN_FILES, 
-            sequence_length=10,
-            batch_size=EXPERIMENT_CONFIG.get('batch_size')
-    )
-    test_dataset_seq_10 = load_dataset_conv(
-            imu_file=IMU_TEST_FILES, 
-            sequence_length=10,
-            batch_size=EXPERIMENT_CONFIG.get('batch_size')
-    )
+    datasets = {}
+    for sq in EXPERIMENT_CONFIG.get('sequence_lengths'):
+        train_dataset = load_dataset_conv(
+                imu_file=IMU_TRAIN_FILES, 
+                sequence_length=sq,
+                batch_size=EXPERIMENT_CONFIG.get('batch_size')
+        )
 
-    train_dataset_seq_20 = load_dataset_conv(
-            imu_file=IMU_TRAIN_FILES, 
-            sequence_length=20,
-            batch_size=EXPERIMENT_CONFIG.get('batch_size')
-    )
-    test_dataset_seq_20 = load_dataset_conv(
-            imu_file=IMU_TRAIN_FILES, 
-            sequence_length=20,
-            batch_size=EXPERIMENT_CONFIG.get('batch_size')
-    )
-
-    datsets = {
-        '10' : (train_dataset_seq_10, test_dataset_seq_10),
-        '20' : (train_dataset_seq_20, test_dataset_seq_20)
-    }
-
-    results = run_all_experiments(datsets)
+        test_dataset = load_dataset_conv(
+                imu_file=IMU_TEST_FILES, 
+                sequence_length=sq,
+                batch_size=EXPERIMENT_CONFIG.get('batch_size')
+        )
+      
+        datasets[str(sq)] = (train_dataset, test_dataset)
+    
+    results = run_all_experiments(datasets)
     
     if results:
         save_results_to_csv(results)

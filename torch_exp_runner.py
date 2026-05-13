@@ -10,28 +10,28 @@ from torch_dataset import IMUDataset
 from torch_model import NDenseModel, NConvModel, NLSTMModel, NConvLSTMModel
 
 BENCHMARK_SWEEP = {
-    # "dense_only": {
-    #     "class": NDenseModel,
-    #     "param_grid": [
-    #         {"n_layers": n, "start_units": 128, "end_units": 16}
-    #         for n in [1, 2, 3, 4, 5, 6, 8]
-    #     ],
-    # },
-    # "conv_only": {
-    #     "class": NConvModel,
-    #     "param_grid": [
-    #         {"n_layers": n, "base_filters": 16, "max_filters": 64}
-    #         for n in [1, 2, 3, 4, 5, 6, 8]
-    #     ],
-    # },
-    # "lstm_only": {
-    #     "class": NLSTMModel,
-    #     "param_grid": [
-    #         {"n_layers": nl, "lstm_units": u, "dense_head_units": [18, 6]}
-    #         for nl in [1, 2, 3]
-    #         for u in [32,60]
-    #     ],
-    # },
+    "dense_only": {
+        "class": NDenseModel,
+        "param_grid": [
+            {"n_layers": n, "start_units": 128, "end_units": 16}
+            for n in [1, 2, 3, 4, 5, 6, 8]
+        ],
+    },
+    "conv_only": {
+        "class": NConvModel,
+        "param_grid": [
+            {"n_layers": n, "base_filters": 16, "max_filters": 64}
+            for n in [1, 2, 3, 4, 5, 6, 8]
+        ],
+    },
+    "lstm_only": {
+        "class": NLSTMModel,
+        "param_grid": [
+            {"n_layers": nl, "lstm_units": u, "dense_head_units": [18, 6]}
+            for nl in [1, 2, 3]
+            for u in [32,60]
+        ],
+    },
     "conv_lstm": {
         "class": NConvLSTMModel,
         "param_grid": [
@@ -52,9 +52,9 @@ BENCHMARK_SWEEP = {
 EXPERIMENT_CONFIG = { 
     "sequence_lengths": [10, 20],
     "batch_norm_options": [False, True],
-    'learning_rate': 1e-4,
-    'batch_size': 64,
-    'epochs': 10,
+    'learning_rate': 1e-1,
+    'batch_size': 1024,
+    'epochs': 20,
 }
 
 # File paths
@@ -162,14 +162,17 @@ def run_experiment(model, dataloader):
     # Evaluate on test set
     model.eval()
     test_loss = 0.0
+    total_samples = 0
 
     with torch.no_grad():
         for x, y in test_dataloader:
             x, y = x.to(DEVICE), y.to(DEVICE)
             pred = model(x)
-            test_loss += loss_fn(pred, y).item()
+            batch_size = x.size(0)
+            test_loss += loss_fn(pred, y).item() * batch_size  # un-average the batch loss
+            total_samples += batch_size
 
-    test_loss /= len(test_dataloader)
+    test_loss /= total_samples   # now equivalent to Keras
     print(f"  🎯 Final test Avg Loss: {test_loss:.4f}")
 
     return (test_loss, None, None)
@@ -198,7 +201,7 @@ def run_all_experiments(dataloaders):
                 torch.save(current_model.state_dict(), model_path)
                 
                 info_path = os.path.join(MODELS_DIR, f"torch_{model_id}.txt")
-                with open(info_path, "w") as f:
+                with open(info_path, "w", encoding='utf-8') as f:
                     sample = 0
                     for x,y in dataloaders[str(EXPERIMENT_CONFIG.get('sequence_lengths')[0])][0]:
                         sample = x

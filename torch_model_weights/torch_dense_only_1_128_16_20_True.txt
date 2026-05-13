@@ -1,20 +1,20 @@
 ==========================================================================================
 Layer (type:depth-idx)                   Output Shape              Param #
 ==========================================================================================
-NDenseModel                              [64, 7]                   --
-├─Sequential: 1-1                        [64, 128]                 --
-│    └─Linear: 2-1                       [64, 128]                 1,280
-│    └─ReLU: 2-2                         [64, 128]                 --
-│    └─BatchNorm1d: 2-3                  [64, 128]                 256
-├─Linear: 1-2                            [64, 7]                   903
+NDenseModel                              [1024, 7]                 --
+├─Sequential: 1-1                        [1024, 128]               --
+│    └─Linear: 2-1                       [1024, 128]               1,280
+│    └─ReLU: 2-2                         [1024, 128]               --
+│    └─BatchNorm1d: 2-3                  [1024, 128]               256
+├─Linear: 1-2                            [1024, 7]                 903
 ==========================================================================================
 Total params: 2,439
 Trainable params: 2,439
 Non-trainable params: 0
-Total mult-adds (M): 0.16
+Total mult-adds (Units.MEGABYTES): 2.50
 ==========================================================================================
-Input size (MB): 0.02
-Forward/backward pass size (MB): 0.13
+Input size (MB): 0.37
+Forward/backward pass size (MB): 2.15
 Params size (MB): 0.01
-Estimated Total Size (MB): 0.17
+Estimated Total Size (MB): 2.53
 ==========================================================================================

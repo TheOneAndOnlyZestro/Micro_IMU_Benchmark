@@ -5,17 +5,25 @@ NDenseModel                              [1024, 7]                 --
 ├─Sequential: 1-1                        [1024, 16]                --
 │    └─Linear: 2-1                       [1024, 128]               1,280
 │    └─ReLU: 2-2                         [1024, 128]               --
-│    └─Linear: 2-3                       [1024, 16]                2,064
-│    └─ReLU: 2-4                         [1024, 16]                --
+│    └─BatchNorm1d: 2-3                  [1024, 128]               256
+│    └─Linear: 2-4                       [1024, 64]                8,256
+│    └─ReLU: 2-5                         [1024, 64]                --
+│    └─BatchNorm1d: 2-6                  [1024, 64]                128
+│    └─Linear: 2-7                       [1024, 32]                2,080
+│    └─ReLU: 2-8                         [1024, 32]                --
+│    └─BatchNorm1d: 2-9                  [1024, 32]                64
+│    └─Linear: 2-10                      [1024, 16]                528
+│    └─ReLU: 2-11                        [1024, 16]                --
+│    └─BatchNorm1d: 2-12                 [1024, 16]                32
 ├─Linear: 1-2                            [1024, 7]                 119
 ==========================================================================================
-Total params: 3,463
-Trainable params: 3,463
+Total params: 12,743
+Trainable params: 12,743
 Non-trainable params: 0
-Total mult-adds (Units.MEGABYTES): 3.55
+Total mult-adds (Units.MEGABYTES): 13.05
 ==========================================================================================
 Input size (MB): 0.37
-Forward/backward pass size (MB): 1.24
-Params size (MB): 0.01
-Estimated Total Size (MB): 1.62
+Forward/backward pass size (MB): 3.99
+Params size (MB): 0.05
+Estimated Total Size (MB): 4.41
 ==========================================================================================
