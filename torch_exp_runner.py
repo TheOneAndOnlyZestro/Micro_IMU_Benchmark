@@ -203,7 +203,7 @@ def run_all_experiments(dataloaders):
                 info_path = os.path.join(MODELS_DIR, f"torch_{model_id}.txt")
                 with open(info_path, "w", encoding='utf-8') as f:
                     sample = 0
-                    for x,y in dataloaders[str(EXPERIMENT_CONFIG.get('sequence_lengths')[0])][0]:
+                    for x,y in dataloaders.get(str(sq))[0]:
                         sample = x
                         break
                     f.write(str(summary(current_model, input_size=sample.shape, verbose=0)))

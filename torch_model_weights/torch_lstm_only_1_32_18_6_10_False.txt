@@ -1,0 +1,32 @@
+==========================================================================================
+Layer (type:depth-idx)                   Output Shape              Param #
+==========================================================================================
+NLSTMModel                               [1024, 7]                 --
+├─ModuleList: 1-1                        --                        --
+│    └─LSTMCell: 2-1                     [1024, 32]                5,504
+│    └─LSTMCell: 2-2                     [1024, 32]                (recursive)
+│    └─LSTMCell: 2-3                     [1024, 32]                (recursive)
+│    └─LSTMCell: 2-4                     [1024, 32]                (recursive)
+│    └─LSTMCell: 2-5                     [1024, 32]                (recursive)
+│    └─LSTMCell: 2-6                     [1024, 32]                (recursive)
+│    └─LSTMCell: 2-7                     [1024, 32]                (recursive)
+│    └─LSTMCell: 2-8                     [1024, 32]                (recursive)
+│    └─LSTMCell: 2-9                     [1024, 32]                (recursive)
+│    └─LSTMCell: 2-10                    [1024, 32]                (recursive)
+├─Sequential: 1-2                        [1024, 7]                 --
+│    └─Linear: 2-11                      [1024, 18]                594
+│    └─ReLU: 2-12                        [1024, 18]                --
+│    └─Linear: 2-13                      [1024, 6]                 114
+│    └─ReLU: 2-14                        [1024, 6]                 --
+│    └─Linear: 2-15                      [1024, 7]                 49
+==========================================================================================
+Total params: 6,261
+Trainable params: 6,261
+Non-trainable params: 0
+Total mult-adds (Units.GIGABYTES): 1.80
+==========================================================================================
+Input size (MB): 0.37
+Forward/backward pass size (MB): 2.88
+Params size (MB): 0.03
+Estimated Total Size (MB): 3.27
+==========================================================================================

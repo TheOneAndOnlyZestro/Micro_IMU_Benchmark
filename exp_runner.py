@@ -60,8 +60,8 @@ EXPERIMENT_CONFIG = {
     "sequence_lengths" : [10,20],
     "batch_norm_options" : [False, True],
     'learning_rate': 1e-3,
-    'batch_size': 64,
-    'epochs': 20,
+    'batch_size': 512,
+    'epochs': 15,
 }
 
 

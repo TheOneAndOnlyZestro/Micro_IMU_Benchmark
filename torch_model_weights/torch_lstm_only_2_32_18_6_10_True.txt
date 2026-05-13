@@ -1,0 +1,49 @@
+==========================================================================================
+Layer (type:depth-idx)                   Output Shape              Param #
+==========================================================================================
+NLSTMModel                               [1024, 7]                 --
+├─ModuleList: 1-3                        --                        (recursive)
+│    └─LSTMCell: 2-1                     [1024, 32]                5,504
+│    └─LSTMCell: 2-2                     [1024, 32]                (recursive)
+│    └─LSTMCell: 2-3                     [1024, 32]                (recursive)
+│    └─LSTMCell: 2-4                     [1024, 32]                (recursive)
+│    └─LSTMCell: 2-5                     [1024, 32]                (recursive)
+│    └─LSTMCell: 2-6                     [1024, 32]                (recursive)
+│    └─LSTMCell: 2-7                     [1024, 32]                (recursive)
+│    └─LSTMCell: 2-8                     [1024, 32]                (recursive)
+│    └─LSTMCell: 2-9                     [1024, 32]                (recursive)
+│    └─LSTMCell: 2-10                    [1024, 32]                (recursive)
+├─ModuleList: 1-4                        --                        (recursive)
+│    └─BatchNorm1d: 2-11                 [1024, 32, 10]            64
+├─ModuleList: 1-3                        --                        (recursive)
+│    └─LSTMCell: 2-12                    [1024, 32]                8,448
+│    └─LSTMCell: 2-13                    [1024, 32]                (recursive)
+│    └─LSTMCell: 2-14                    [1024, 32]                (recursive)
+│    └─LSTMCell: 2-15                    [1024, 32]                (recursive)
+│    └─LSTMCell: 2-16                    [1024, 32]                (recursive)
+│    └─LSTMCell: 2-17                    [1024, 32]                (recursive)
+│    └─LSTMCell: 2-18                    [1024, 32]                (recursive)
+│    └─LSTMCell: 2-19                    [1024, 32]                (recursive)
+│    └─LSTMCell: 2-20                    [1024, 32]                (recursive)
+│    └─LSTMCell: 2-21                    [1024, 32]                (recursive)
+├─ModuleList: 1-4                        --                        (recursive)
+│    └─BatchNorm1d: 2-22                 [1024, 32, 10]            64
+├─Sequential: 1-5                        [1024, 7]                 --
+│    └─Linear: 2-23                      [1024, 18]                594
+│    └─ReLU: 2-24                        [1024, 18]                --
+│    └─BatchNorm1d: 2-25                 [1024, 18]                36
+│    └─Linear: 2-26                      [1024, 6]                 114
+│    └─ReLU: 2-27                        [1024, 6]                 --
+│    └─BatchNorm1d: 2-28                 [1024, 6]                 12
+│    └─Linear: 2-29                      [1024, 7]                 49
+==========================================================================================
+Total params: 14,885
+Trainable params: 14,885
+Non-trainable params: 0
+Total mult-adds (Units.GIGABYTES): 4.57
+==========================================================================================
+Input size (MB): 0.37
+Forward/backward pass size (MB): 10.94
+Params size (MB): 0.06
+Estimated Total Size (MB): 11.36
+==========================================================================================
