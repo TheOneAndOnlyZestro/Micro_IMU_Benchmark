@@ -6,7 +6,7 @@ import tensorflow as tf
 from tensorflow import keras
 
 # Import your model creation functions (Ensure these use batch_size=1 as discussed!)
-from model import create_dense_n_model, create_conv_n_model, create_lstm_n_model
+from model import create_dense_model_generator, create_conv_model_generator, create_lstm_model_generator, create_conv_lstm_model_generator
 
 # --- Configuration ---
 MODEL_DIR = 'model_weights'
@@ -44,8 +44,58 @@ def get_representative_data(num_samples=100, sequence_length=10):
             
     return gen
 
-# --- Conversion Logic ---
+def run_dense_only(model_id: str):
+    params = model_id.split('_')
+    n_layers = int(params[2])
+    start_units = int(params[3])
+    end_units = int(params[4])
+    sq = int(params[5])
+    bn = params[6].split('.')[0] == 'True'
 
+    return create_dense_model_generator(n_layers=n_layers, start_units=start_units, 
+            end_units=end_units, batch_size=1)(sequence_length=sq, batch_normalization=bn), sq
+    
+    
+def run_conv_only(model_id: str):
+    params = model_id.split('_')
+    n_layers = int(params[2])
+    base_filters = int(params[3])
+    max_filters = int(params[4])
+    sq = int(params[5])
+    bn = params[6].split('.')[0] == 'True'
+
+    return create_conv_model_generator(n_layers=n_layers, base_filters=base_filters, 
+            max_filters=max_filters, batch_size=1)(sequence_length=sq, batch_normalization=bn), sq
+
+def run_lstm_only(model_id: str):
+    params = model_id.split('_')
+    n_layers = int(params[2])
+    lstm_units = int(params[3])
+    dense_head_units = [int(param) for param in params[4 : -2]]
+    sq = int(params[-2])
+    bn = params[-1].split('.')[0] == 'True'
+    
+    return create_lstm_model_generator(n_layers=n_layers, lstm_units=lstm_units, 
+    dense_head_units=dense_head_units, batch_size=1)(sequence_length=sq, batch_normalization=bn) , sq
+
+def run_conv_lstm(model_id: str):
+    params = model_id.split('_')
+    n_conv_layers = int(params)[2]
+    n_lstm_layers = int(params)[3]
+    lstm_units = int(params)[4]
+    dense_head_units = [int(param) for param in params[5 : -2]]
+    sq = int(params[-2])
+    bn = params[-1].split('.')[0] == 'True'
+
+    return create_conv_lstm_model_generator(n_conv_layers=n_conv_layers, n_lstm_layers=n_lstm_layers, lstm_units=lstm_units,
+    dense_head_units=dense_head_units, batch_size=1)(sequence_length=sq, batch_normalization=bn), sq
+model_handle = {
+    'dense_only': run_dense_only,
+    'conv_only': run_conv_only,
+    'lstm_only' : run_lstm_only,
+    'conv_lstm' : run_conv_lstm
+}
+# --- Conversion Logic ---
 def convert_to_header(tflite_path, header_path):
     """System call to xxd to generate C++ headers."""
     try:
@@ -68,31 +118,9 @@ def run_benchmark_conversion():
             # 1. Load the dynamic model trained during the experiment
             trained_model = tf.keras.models.load_model(model_path)
             
-            # 2. Rebuild the Exact Same Architecture but with a STATIC BATCH SIZE OF 1
-            # if 'residual_conv_lstm' in filename:
-            #     static_model = create_residual_conv_lstm_model(sequence_length=SEQUENCE_LENGTH, batch_size=1)
-            # elif 'conv_lstm' in filename:
-            #     static_model = create_conv_lstm_model(sequence_length=SEQUENCE_LENGTH, batch_size=1)
-            # elif 'conv' in filename:
-            #     # Assuming your standard conv model also takes batch_size now
-            #     static_model = create_conv_model(sequence_length=SEQUENCE_LENGTH, batch_size=1)
-            # else:
-            #     print(f"  ⚠️ Skipping {filename}: Unknown architecture.")
-            #     continue
+            type = int('_'.join(filename.split('_')[0:2]))
 
-            n = int(filename.split('_')[1])
-            seq_length = int(filename.split('_')[2])
-            batch_norm = True if 'ON' in filename.split('_')[3]   else False
-
-            if filename.startswith('dense'):
-                static_model = create_dense_n_model( n + 1, batch_size=1)(sequence_length=seq_length, batch_normalization=batch_norm)
-            elif filename.startswith('conv'):
-                static_model = create_conv_n_model( n + 1, batch_size=1)(sequence_length=seq_length, batch_normalization=batch_norm)
-            elif filename.startswith('lstm'):
-                static_model = create_lstm_n_model( n + 1, batch_size=1)(sequence_length=seq_length, batch_normalization=batch_norm)
-
-            else:
-                pass
+            static_model, sq = model_handle.get(type)(filename)
 
             # 3. Transfer the weights
             static_model.set_weights(trained_model.get_weights())
@@ -101,7 +129,7 @@ def run_benchmark_conversion():
             print(f"  ❌ Failed to load/rebuild model: {e}")
             continue
 
-        strategies = ['float32', 'hybrid', 'int8']
+        strategies = ['float32', 'int8']
 
         for strat in strategies:
             print(f"  -> Converting Strategy: {strat}")
@@ -115,17 +143,9 @@ def run_benchmark_conversion():
             # Base supported ops (no SELECT_TF_OPS allowed for pure TFLM!)
             converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS]
 
-            # Apply specific strategy settings
-            if strat == 'hybrid':
+            if strat == 'int8':
                 converter.optimizations = [tf.lite.Optimize.DEFAULT]
-                
-            # elif strat == 'float16':
-            #     converter.optimizations = [tf.lite.Optimize.DEFAULT]
-            #     converter.target_spec.supported_types = [tf.float16]
-                
-            elif strat == 'int8':
-                converter.optimizations = [tf.lite.Optimize.DEFAULT]
-                converter.representative_dataset = get_representative_data(num_samples=100, sequence_length=seq_length)
+                converter.representative_dataset = get_representative_data(num_samples=100, sequence_length=sq)
                 
                 # Strict Full Integer Quantization
                 converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS_INT8]

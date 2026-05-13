@@ -60,7 +60,7 @@ EXPERIMENT_CONFIG = {
     "sequence_lengths" : [10,20],
     "batch_norm_options" : [False, True],
     'learning_rate': 1e-3,
-    'batch_size': 512,
+    'batch_size': 32,
     'epochs': 15,
 }
 
@@ -80,7 +80,7 @@ def run_experiment(model, dataset):
     """Run a single experiment configuration."""
     optimizer = keras.optimizers.Adam(learning_rate=EXPERIMENT_CONFIG.get('learning_rate'))
     # Compile with specific learning rate
-    model.compile(optimizer=optimizer, loss='mean_squared_error', metrics=['accuracy'])
+    model.compile(optimizer=optimizer, loss='mean_squared_error', metrics=['mae'])
     train_dataset, test_dataset = dataset
     # Train model
     history = model.fit(
@@ -91,9 +91,9 @@ def run_experiment(model, dataset):
         verbose=1
     )
 
-    loss, accuracy = model.evaluate(test_dataset, verbose=0)
+    loss, mae = model.evaluate(test_dataset, verbose=0)
 
-    return (loss, accuracy, history)  
+    return (loss, mae, history)  
 
 def run_dense_only(model_info, generator_func):
     n_layers = model_info.get('n_layers')
@@ -178,7 +178,7 @@ def run_all_experiments(datasets):
             
             for sq, bn, model_id, current_model in models:
                 start_time = time.time()
-                loss, accuracy, history = run_experiment(current_model, dataset=datasets.get(str(sq)))
+                loss, mae, history = run_experiment(current_model, dataset=datasets.get(str(sq)))
                 elapsed_time = time.time() - start_time
 
                 # Save best model
@@ -194,7 +194,7 @@ def run_all_experiments(datasets):
                     'sequence_length' : sq,
                     'batch_normalization' : 'ON' if bn else 'OFF',
                     'final_loss': loss,
-                    'final_accuracy': accuracy,
+                    'final_mae': mae,
                     'epochs_trained': len(history.history['loss']),
                     'training_time_seconds': elapsed_time,
                     'model_path': model_path
@@ -218,7 +218,7 @@ def save_results_to_csv(results):
     print("EXPERIMENT SUMMARY")
     print('=' * 60)
     print(df[['model_type', 'learning_rate', 'batch_size', 'sequence_length', 'batch_normalization',
-              'final_loss', 'final_accuracy']].to_string(index=False))
+              'final_loss', 'final_mae']].to_string(index=False))
     print(f"\nResults saved to: {output_file}")
     
     # Find best model

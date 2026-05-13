@@ -53,24 +53,18 @@ def convert_to_header(tflite_path, header_path):
         print(f"  [Error] xxd failed: {e}")
 
 def run_conversion_pipeline():
-    onnx_files = [f for f in os.listdir(ONNX_DIR) if f.startswith('lstm') and f.endswith('.onnx')]
+    onnx_files = [f for f in os.listdir(ONNX_DIR)]
     onnx_files.sort()
 
     for filename in onnx_files:
         onnx_path = os.path.join(ONNX_DIR, filename)
-        base_name = filename.replace('.onnx', '')
+        base_name = filename.replace('.pt', '')
         
-        # Extract sequence length from filename (Format: arch_layers_seq_bn)
-        parts = base_name.split('_')
-        try:
-            seq_length = int(parts[2])
-        except (IndexError, ValueError):
-            print(f"  ⚠️ Skipping {filename}: Could not parse sequence length.")
-            continue
-            
-        temp_saved_model_dir = f"temp_tf_{base_name}"
+        parts = '_'.join(base_name.split('_')[1 : ])
+        seq_length = int(parts[-2])
+        temp_saved_model_dir = f"./onnx_models/temp_tf_{base_name}"
         
-        print(f"\n🚀 Processing ONNX Model: {filename} (Seq Len: {seq_length})")
+        print(f"\n🚀 Processing ONNX Model: {filename}")
         
         try:
             # 1. Convert ONNX to TF SavedModel
@@ -92,7 +86,7 @@ def run_conversion_pipeline():
             continue
 
         # Removed 'float16' per request
-        strategies = ['float32', 'hybrid', 'int8']
+        strategies = ['float32', 'int8']
 
         for strat in strategies:
             print(f"  -> Converting Strategy: {strat}")
@@ -102,11 +96,8 @@ def run_conversion_pipeline():
             # REQUIRED: Prevent errors on LSTMs during TFLite conversion
             converter._experimental_lower_tensor_list_ops = False
             converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS]
-
-            if strat == 'hybrid':
-                converter.optimizations = [tf.lite.Optimize.DEFAULT]
                 
-            elif strat == 'int8':
+            if strat == 'int8':
                 converter.optimizations = [tf.lite.Optimize.DEFAULT]
                 # Pass the dynamic seq_length into the calibrator generator
                 converter.representative_dataset = get_representative_data(expected_input_shape, seq_length)
