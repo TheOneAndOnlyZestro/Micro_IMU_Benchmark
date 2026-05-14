@@ -1,0 +1,4 @@
+Model,Seq_Length,Sample_ID,Inference_Time_ms,Arena_Memory_Bytes,MSE
+torch_conv_lstm_2_2_60_18_6_20_False_int8.tflite,20,N/A,ERROR_TIMEOUT_SIZE,ERROR_TIMEOUT_SIZE,ERROR_TIMEOUT_SIZE
+torch_dense_only_3_128_16_20_False_int8.tflite,20,N/A,ERROR_TIMEOUT_SIZE,ERROR_TIMEOUT_SIZE,ERROR_TIMEOUT_SIZE
+dense_only_1_128_16_20_False_int8.tflite,20,N/A,ERROR_TIMEOUT_SIZE,ERROR_TIMEOUT_SIZE,ERROR_TIMEOUT_SIZE

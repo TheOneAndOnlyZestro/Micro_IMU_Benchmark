@@ -1,0 +1,6 @@
+Model,Seq_Length,Sample_ID,Inference_Time_ms,Arena_Memory_Bytes,MSE
+torch_torch_dense_only_3_128_16_10_True.onnx_int8.tflite,10,0,1.496,2804,3389.3310338664082
+torch_torch_dense_only_3_128_16_10_True.onnx_int8.tflite,10,1,0.992,2804,3389.3310338664082
+torch_torch_dense_only_3_128_16_10_True.onnx_int8.tflite,10,2,0.992,2804,3389.3310338664082
+torch_torch_dense_only_3_128_16_10_True.onnx_int8.tflite,10,3,0.992,2804,3389.3310338664082
+torch_torch_dense_only_3_128_16_10_True.onnx_int8.tflite,10,4,0.992,2804,3389.3310338664082

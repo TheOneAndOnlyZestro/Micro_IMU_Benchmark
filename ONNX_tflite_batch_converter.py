@@ -53,16 +53,16 @@ def convert_to_header(tflite_path, header_path):
         print(f"  [Error] xxd failed: {e}")
 
 def run_conversion_pipeline():
-    onnx_files = [f for f in os.listdir(ONNX_DIR)]
+    onnx_files = [f for f in os.listdir(ONNX_DIR) if f.endswith('onnx')]
     onnx_files.sort()
 
     for filename in onnx_files:
         onnx_path = os.path.join(ONNX_DIR, filename)
-        base_name = filename.replace('.pt', '')
+        base_name = filename.replace('.onnx', '')
         
         parts = '_'.join(base_name.split('_')[1 : ])
-        seq_length = int(parts[-2])
-        temp_saved_model_dir = f"./onnx_models/temp_tf_{base_name}"
+        seq_length = int(parts.split('_')[-2])
+        temp_saved_model_dir = f"./onnx_temp/temp_tf_{base_name}"
         
         print(f"\n🚀 Processing ONNX Model: {filename}")
         
@@ -110,12 +110,12 @@ def run_conversion_pipeline():
                 tflite_model = converter.convert()
                 
                 # Prepend 'torch_' to easily identify converted models in dashboard
-                tflite_name = f"torch_{base_name}_{strat}.tflite"
+                tflite_name = f"{base_name}_{strat}.tflite"
                 tflite_path = os.path.join(TFLITE_DIR, tflite_name)
                 with open(tflite_path, 'wb') as f:
                     f.write(tflite_model)
 
-                header_name = f"torch_{base_name}_{strat}.h"
+                header_name = f"{base_name}_{strat}.h"
                 header_path = os.path.join(HEADER_DIR, header_name)
                 convert_to_header(tflite_path, header_path)
                 

@@ -1,0 +1,2 @@
+Model,Seq_Length,Sample_ID,Inference_Time_ms,Arena_Memory_Bytes,MSE
+torch_conv_only_1_16_64_20_False_int8.tflite,20,N/A,ERROR_TIMEOUT_SIZE,ERROR_TIMEOUT_SIZE,ERROR_TIMEOUT_SIZE

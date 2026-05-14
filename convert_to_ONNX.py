@@ -43,9 +43,9 @@ def run_lstm_only(model_id: str):
 
 def run_conv_lstm(model_id: str):
     params = model_id.split('_')
-    n_conv_layers = int(params)[2]
-    n_lstm_layers = int(params)[3]
-    lstm_units = int(params)[4]
+    n_conv_layers = int(params[2])
+    n_lstm_layers = int(params[3])
+    lstm_units = int(params[4])
     dense_head_units = [int(param) for param in params[5 : -2]]
     sq = int(params[-2])
     bn = params[-1].split('.')[0] == 'True'
@@ -61,7 +61,7 @@ model_handle = {
 }
 
 def export_all_to_onnx():
-    pt_files = [f for f in os.listdir(MODEL_DIR)]
+    pt_files = [f for f in os.listdir(MODEL_DIR) if f.endswith('.pt')]
 
     for filename in pt_files:
         model_path = os.path.join(MODEL_DIR, filename)
@@ -72,10 +72,10 @@ def export_all_to_onnx():
         print(f"\n🚀 Exporting PyTorch Model: {filename}")
         
         try:
-            type = int('_'.join(parts.split('_')[0:2]))
+            type = '_'.join(parts.split('_')[0:2])
             torch_model, sq = model_handle.get(type)(parts)
             
-            torch_model.load_state_dict(torch.load(model_path, map_location='cpu'))
+            torch_model.load_state_dict(torch.load(model_path, map_location='cpu', weights_only=True))
             torch_model.eval()
 
             # Dynamic dummy input (1, Channels, Seq, Width)

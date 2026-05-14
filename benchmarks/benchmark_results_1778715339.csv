@@ -1,0 +1,2 @@
+Model,Seq_Length,Sample_ID,Inference_Time_ms,Arena_Memory_Bytes,MSE
+conv_lstm_2_2_32_18_6_20_True_int8.tflite,20,N/A,ERROR_TIMEOUT_SIZE,ERROR_TIMEOUT_SIZE,ERROR_TIMEOUT_SIZE

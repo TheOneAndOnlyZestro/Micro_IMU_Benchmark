@@ -1,0 +1,2 @@
+Model,Seq_Length,Sample_ID,Inference_Time_ms,Arena_Memory_Bytes,MSE
+dense_only_1_128_16_10_False_int8.tflite,10,N/A,ERROR_TFLITE_INIT_FAILED,ERROR_TFLITE_INIT_FAILED,ERROR_TFLITE_INIT_FAILED

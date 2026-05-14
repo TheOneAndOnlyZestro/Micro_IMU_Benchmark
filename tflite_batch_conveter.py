@@ -80,9 +80,9 @@ def run_lstm_only(model_id: str):
 
 def run_conv_lstm(model_id: str):
     params = model_id.split('_')
-    n_conv_layers = int(params)[2]
-    n_lstm_layers = int(params)[3]
-    lstm_units = int(params)[4]
+    n_conv_layers = int(params[2])
+    n_lstm_layers = int(params[3])
+    lstm_units = int(params[4])
     dense_head_units = [int(param) for param in params[5 : -2]]
     sq = int(params[-2])
     bn = params[-1].split('.')[0] == 'True'
@@ -118,7 +118,7 @@ def run_benchmark_conversion():
             # 1. Load the dynamic model trained during the experiment
             trained_model = tf.keras.models.load_model(model_path)
             
-            type = int('_'.join(filename.split('_')[0:2]))
+            type = '_'.join(filename.split('_')[0:2])
 
             static_model, sq = model_handle.get(type)(filename)
 
